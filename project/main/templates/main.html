@@ -5,6 +5,14 @@
     <title>Document</title>
 </head>
 <body>
-    
+    {% if blog_list%}
+    <ul>
+        {% for blog in blog_list %}
+        <li><a href="{% url 'main:detail' blog.id %}">{{ blog.subject }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h2>게시글이 없습니다.</h2>
+    {% endif %}
 </body>
 </html>

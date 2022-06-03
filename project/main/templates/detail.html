@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ blog.subject }}</h1>
+    <p>{{ blog.content }}</p>
+    <ul>
+        {% for comment in blog.comment_set.all %}
+        <li>{{ comment.content }}</li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'comment_create' blog.id %}">
+        {% csrf_token %}
+        <textarea name="content" id="content" rows="10" placeholder="Text..."></textarea>
+        <input type="submit" value="등록">
+    </form>
+</body>
+</html>
