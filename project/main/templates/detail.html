@@ -7,9 +7,10 @@
 <body>
     <h1>{{ blog.subject }}</h1>
     <p>{{ blog.content }}</p>
+    <h5>{{ blog.comment_set.count }}개의 댓글이 있습니다.</h5>
     <ul>
         {% for comment in blog.comment_set.all %}
-        <li>{{ comment.content }}</li>
+        <li>{{ comment.comment}}</li>
         {% endfor %}
     </ul>
     <form action="{% url 'main:comment_create' blog.id %}" method="POST">
@@ -17,5 +18,6 @@
         <textarea name="comment" id="comment" rows="10" placeholder="Text..."></textarea>
         <input type="submit" value="등록">
     </form>
+    <a href="{% url 'main:main' %}">돌아가기</a>
 </body>
 </html>
