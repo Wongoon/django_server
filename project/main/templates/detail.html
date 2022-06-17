@@ -12,9 +12,9 @@
         <li>{{ comment.content }}</li>
         {% endfor %}
     </ul>
-    <form action="{% url 'comment_create' blog.id %}">
+    <form action="{% url 'main:comment_create' blog.id %}" method="POST">
         {% csrf_token %}
-        <textarea name="content" id="content" rows="10" placeholder="Text..."></textarea>
+        <textarea name="comment" id="comment" rows="10" placeholder="Text..."></textarea>
         <input type="submit" value="등록">
     </form>
 </body>

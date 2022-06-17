@@ -13,14 +13,13 @@ def first(request):
 def detail(request, blog_id):
     try:
         blog = Blog.objects.get(id=blog_id)
-        context = {'blog' : blog}
     except Blog.DoesNotExist:
         return render(request, 'blog_error.html')
     else:
-        return render(request, 'detail.html', context)
+        return render(request, 'detail.html', {'blog':blog})
 
 def comment_create(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id)
-    blog.comment_set.create(content = request.POST.get('content'), create_date = timezone.now())
+    blog.comment_set.create(comment = request.POST.get('comment'), comment_date = timezone.now())
     return redirect('main:detail', blog_id = blog.id)
 
